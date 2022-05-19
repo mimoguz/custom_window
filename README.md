@@ -1,4 +1,4 @@
-# Customize JavaFX Stage on Windows 11
+# Customize JavaFX stages on Windows 11
 
 A small collection of utility methods to customize a JavaFX stage. Targets Windows 11+, won't show any effect on unsupported OSes.
 
