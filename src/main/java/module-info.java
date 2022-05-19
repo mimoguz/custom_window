@@ -4,5 +4,5 @@ module io.github.mimoguz.custom_window {
     requires com.sun.jna;
     requires com.sun.jna.platform;
 
-    exports custom_window;
+    exports io.github.mimoguz.custom_window;
 }

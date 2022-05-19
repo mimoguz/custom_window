@@ -1,4 +1,4 @@
-package custom_window;
+package io.github.mimoguz.custom_window;
 
 import javafx.application.Application;
 import javafx.application.Platform;

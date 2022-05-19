@@ -1,5 +1,6 @@
-package custom_window;
+package io.github.mimoguz.custom_window;
 
+/** Some DWM enum variants and constants. */
 @SuppressWarnings("unused")
 public enum DwmAttribute {
     /** A possible value for DWMWA_SYSTEMBACKDROP_TYPE: default. */

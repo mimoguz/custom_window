@@ -1,4 +1,4 @@
-package custom_window;
+package io.github.mimoguz.custom_window;
 
 import com.sun.jna.Library;
 import com.sun.jna.Native;
@@ -12,8 +12,15 @@ import com.sun.jna.Platform;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+/**
+ * A collection of utility methods to customize a window.
+ * Targets Windows 11+, won't show any effect on unsupported OSes.
+ */
 @SuppressWarnings("UnusedReturnValue")
 public class StageOps {
+    /**
+     * A wrapper for HWND type.
+     */
     public static class WindowHandle {
         private WinDef.HWND value;
     }
@@ -29,6 +36,14 @@ public class StageOps {
         );
     }
 
+    /**
+     * A wrapper for DwmSetWindowAttribute.
+     *
+     * @param handle    WindowHandle for the window. Can be obtained by using findWindowHandle method. Can be null.
+     * @param attribute dwAttribute
+     * @param value     pvAttribute
+     * @return True if was successful, false if it wasn't.
+     */
     public static boolean dwmSetBooleanValue(WindowHandle handle, DwmAttribute attribute, boolean value) {
         if (handle == null) {
             return false;
@@ -43,6 +58,14 @@ public class StageOps {
         );
     }
 
+    /**
+     * A wrapper for DwmSetWindowAttribute.
+     *
+     * @param handle    WindowHandle for the window. Can be obtained by using findWindowHandle method. Can be null.
+     * @param attribute dwAttribute
+     * @param value     pvAttribute
+     * @return True if was successful, false if it wasn't.
+     */
     public static boolean dwmSetIntValue(WindowHandle handle, DwmAttribute attribute, int value) {
         if (handle == null) {
             return false;
@@ -60,7 +83,7 @@ public class StageOps {
     /**
      * Try find the window handle.
      *
-     * @param stage JavaFX Stage
+     * @param stage JavaFX Stage to search.
      * @return WindowHandle if it can find, null otherwise.
      */
     public static WindowHandle findWindowHandle(Stage stage) {
@@ -80,14 +103,35 @@ public class StageOps {
         return null;
     }
 
+    /**
+     * Sets the border color of a window.
+     *
+     * @param handle WindowHandle for the window. Can be obtained by using findWindowHandle method. Can be null.
+     * @param color  Border color
+     * @return True if was successful, false if it wasn't.
+     */
     public static boolean setBorderColor(WindowHandle handle, Color color) {
         return dwmSetIntValue(handle, DwmAttribute.DWMWA_BORDER_COLOR, RGB(color));
     }
 
+    /**
+     * Sets the title bar background color of a window.
+     *
+     * @param handle WindowHandle for the window. Can be obtained by using findWindowHandle method. Can be null.
+     * @param color  Caption color
+     * @return True if was successful, false if it wasn't.
+     */
     public static boolean setCaptionColor(WindowHandle handle, Color color) {
         return dwmSetIntValue(handle, DwmAttribute.DWMWA_CAPTION_COLOR, RGB(color));
     }
 
+    /**
+     * Sets the title text color of a window.
+     *
+     * @param handle WindowHandle for the window. Can be obtained by using findWindowHandle method. Can be null.
+     * @param color  Caption color
+     * @return True if was successful, false if it wasn't.
+     */
     public static boolean setTextColor(WindowHandle handle, Color color) {
         return dwmSetIntValue(handle, DwmAttribute.DWMWA_TEXT_COLOR, RGB(color));
     }
