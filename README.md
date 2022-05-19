@@ -33,3 +33,5 @@ public class Example extends Application {
     }
 }
 ```
+
+![Screenshot](./screenshot.png)
