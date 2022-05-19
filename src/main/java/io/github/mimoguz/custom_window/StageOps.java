@@ -13,7 +13,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
- * A collection of utility methods to customize a window.
+ * A small collection of utility methods to customize a window.
  * Targets Windows 11+, won't show any effect on unsupported OSes.
  */
 @SuppressWarnings("UnusedReturnValue")
