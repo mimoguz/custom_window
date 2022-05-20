@@ -23,6 +23,9 @@ public class StageOps {
      */
     public static class WindowHandle {
         private WinDef.HWND value;
+
+        private WindowHandle() {
+        }
     }
 
     private interface DwmSupport extends Library {
@@ -148,5 +151,8 @@ public class StageOps {
         return (floatingTo8Bit(color.getBlue()) << 16)
                 | (floatingTo8Bit(color.getGreen()) << 8)
                 | floatingTo8Bit(color.getRed());
+    }
+
+    private StageOps() {
     }
 }

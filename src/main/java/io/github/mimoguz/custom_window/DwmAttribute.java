@@ -47,6 +47,7 @@ public enum DwmAttribute {
     /** Set dark (or light) mode. Accepts a BOOLRef for pvAttribute. */
     DWMWA_USE_IMMERSIVE_DARK_MODE(20);
 
+    /** Corresponding DMW constant value */
     public final int value;
 
     DwmAttribute(int value) {

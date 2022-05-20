@@ -1,3 +1,4 @@
+/** The library depends on JavaFX and JNA. */
 module io.github.mimoguz.custom_window {
     requires transitive javafx.controls;
     requires transitive javafx.graphics;
