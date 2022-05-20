@@ -3,6 +3,17 @@
 A small collection of utility methods to customize a JavaFX stage. Targets Windows 11+, won't show any effect on unsupported OSes.
 
 ```java
+import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+
+import io.github.mimoguz.custom_window.StageOps;
+
 public class Example extends Application {
     public static void main(String[] args) {
         launch();
