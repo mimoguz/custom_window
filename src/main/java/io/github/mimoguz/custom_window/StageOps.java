@@ -47,7 +47,7 @@ public class StageOps {
      * @param value     pvAttribute
      * @return True if was successful, false if it wasn't.
      */
-    public static boolean dwmSetBooleanValue(WindowHandle handle, DwmAttribute attribute, boolean value) {
+    public static boolean dwmSetBooleanValue(final WindowHandle handle, final DwmAttribute attribute, final boolean value) {
         if (handle == null) {
             return false;
         }
@@ -69,7 +69,7 @@ public class StageOps {
      * @param value     pvAttribute
      * @return True if was successful, false if it wasn't.
      */
-    public static boolean dwmSetIntValue(WindowHandle handle, DwmAttribute attribute, int value) {
+    public static boolean dwmSetIntValue(final WindowHandle handle, final DwmAttribute attribute, final int value) {
         if (handle == null) {
             return false;
         }
@@ -89,7 +89,7 @@ public class StageOps {
      * @param stage JavaFX Stage to search.
      * @return WindowHandle if it can find, null otherwise.
      */
-    public static WindowHandle findWindowHandle(Stage stage) {
+    public static WindowHandle findWindowHandle(final Stage stage) {
         if (Platform.getOSType() != Platform.WINDOWS) {
             return null;
         }
@@ -113,7 +113,7 @@ public class StageOps {
      * @param color  Border color
      * @return True if was successful, false if it wasn't.
      */
-    public static boolean setBorderColor(WindowHandle handle, Color color) {
+    public static boolean setBorderColor(final WindowHandle handle, final Color color) {
         return dwmSetIntValue(handle, DwmAttribute.DWMWA_BORDER_COLOR, RGB(color));
     }
 
@@ -124,7 +124,7 @@ public class StageOps {
      * @param color  Caption color
      * @return True if was successful, false if it wasn't.
      */
-    public static boolean setCaptionColor(WindowHandle handle, Color color) {
+    public static boolean setCaptionColor(final WindowHandle handle, final Color color) {
         return dwmSetIntValue(handle, DwmAttribute.DWMWA_CAPTION_COLOR, RGB(color));
     }
 
@@ -135,19 +135,19 @@ public class StageOps {
      * @param color  Caption color
      * @return True if was successful, false if it wasn't.
      */
-    public static boolean setTextColor(WindowHandle handle, Color color) {
+    public static boolean setTextColor(final WindowHandle handle, final Color color) {
         return dwmSetIntValue(handle, DwmAttribute.DWMWA_TEXT_COLOR, RGB(color));
     }
 
-    private static int floatingTo8Bit(double n) {
+    private static int floatingTo8Bit(final double n) {
         return (int) Math.min(255.0, Math.max(n * 255.0, 0.0));
     }
 
-    private static boolean isOk(WinNT.HRESULT result) {
+    private static boolean isOk(final WinNT.HRESULT result) {
         return WinNT.HRESULT.compare(result, W32Errors.S_OK) == 0;
     }
 
-    private static int RGB(Color color) {
+    private static int RGB(final Color color) {
         return (floatingTo8Bit(color.getBlue()) << 16)
                 | (floatingTo8Bit(color.getGreen()) << 8)
                 | floatingTo8Bit(color.getRed());
