@@ -45,7 +45,7 @@ public class StageOps {
      * @param handle    WindowHandle for the window. Can be obtained by using findWindowHandle method. Can be null.
      * @param attribute dwAttribute
      * @param value     pvAttribute
-     * @return True if was successful, false if it wasn't.
+     * @return True if it was successful, false if it wasn't.
      */
     public static boolean dwmSetBooleanValue(final WindowHandle handle, final DwmAttribute attribute, final boolean value) {
         if (handle == null) {
@@ -67,7 +67,7 @@ public class StageOps {
      * @param handle    WindowHandle for the window. Can be obtained by using findWindowHandle method. Can be null.
      * @param attribute dwAttribute
      * @param value     pvAttribute
-     * @return True if was successful, false if it wasn't.
+     * @return True if it was successful, false if it wasn't.
      */
     public static boolean dwmSetIntValue(final WindowHandle handle, final DwmAttribute attribute, final int value) {
         if (handle == null) {
@@ -111,7 +111,7 @@ public class StageOps {
      *
      * @param handle WindowHandle for the window. Can be obtained by using findWindowHandle method. Can be null.
      * @param color  Border color
-     * @return True if was successful, false if it wasn't.
+     * @return True if it was successful, false if it wasn't.
      */
     public static boolean setBorderColor(final WindowHandle handle, final Color color) {
         return dwmSetIntValue(handle, DwmAttribute.DWMWA_BORDER_COLOR, RGB(color));
@@ -122,7 +122,7 @@ public class StageOps {
      *
      * @param handle WindowHandle for the window. Can be obtained by using findWindowHandle method. Can be null.
      * @param color  Caption color
-     * @return True if was successful, false if it wasn't.
+     * @return True if it was successful, false if it wasn't.
      */
     public static boolean setCaptionColor(final WindowHandle handle, final Color color) {
         return dwmSetIntValue(handle, DwmAttribute.DWMWA_CAPTION_COLOR, RGB(color));
@@ -133,7 +133,7 @@ public class StageOps {
      *
      * @param handle WindowHandle for the window. Can be obtained by using findWindowHandle method. Can be null.
      * @param color  Caption color
-     * @return True if was successful, false if it wasn't.
+     * @return True if it was successful, false if it wasn't.
      */
     public static boolean setTextColor(final WindowHandle handle, final Color color) {
         return dwmSetIntValue(handle, DwmAttribute.DWMWA_TEXT_COLOR, RGB(color));
