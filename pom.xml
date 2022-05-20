@@ -14,7 +14,7 @@
         <project.github.repository>mimoguz/custom_window</project.github.repository>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>11</java.version>
-        <javafx.version>18</javafx.version>
+        <javafx.version>[9,)</javafx.version>
         <jna.version>5.11.0</jna.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
@@ -48,13 +48,11 @@
             <groupId>net.java.dev.jna</groupId>
             <artifactId>jna</artifactId>
             <version>${jna.version}</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>net.java.dev.jna</groupId>
             <artifactId>jna-platform</artifactId>
             <version>${jna.version}</version>
-            <scope>provided</scope>
         </dependency>
 
     </dependencies>
