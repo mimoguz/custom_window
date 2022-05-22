@@ -70,19 +70,29 @@ public void start(final Stage stage) {
 
     Platform.runLater(() -> {
         final var handle = StageOps.findWindowHandle(stage);
-        // DWMWA_SYSTEMBACKDROP_TYPE method is in preview builds:
-        if (!StageOps.dwmSetIntValue(handle, DwmAttribute.DWMWA_SYSTEMBACKDROP_TYPE, DwmAttribute.DWMSBT_MAINWINDOW.value)) {
-            StageOps.dwmSetBooleanValue(handle, DwmAttribute.DWMWA_MICA_EFFECT, true);
-        };
         // Optionally enable the dark mode:
         StageOps.dwmSetBooleanValue(handle, DwmAttribute.DWMWA_USE_IMMERSIVE_DARK_MODE, true);
+        // Enable the mica material
+        // DWMWA_SYSTEMBACKDROP_TYPE method is in Windows 11 preview builds:
+        if (!StageOps.dwmSetIntValue(
+                handle,
+                DwmAttribute.DWMWA_SYSTEMBACKDROP_TYPE,
+                DwmAttribute.DWMSBT_MAINWINDOW.value
+        )) {
+            // This is the "old" way:
+            StageOps.dwmSetBooleanValue(handle, DwmAttribute.DWMWA_MICA_EFFECT, true);
+        }
     });
 ```
 
 ![Screenshot](./screenshot-mica.png)
 
-If you look closely at the screenshot, you will see that the title text background is still opaque.
-There are two other issues I found: 
-- The maximize button hover overlay doesn't cover the whole button.
+If you look closely at the screenshot, you will see that the title text background is still opaque. 
+From what I gathered so far, to fix this we need to add WS_EX_NOREDIRECTIONBITMAP to extended window styles 
+(and maybe a couple other sytles, but that's the problematic one). That, apparently, cannot be done after the window 
+was created. So I think a JavaFX level fix (in GlassWindow.cpp) needed here.
+
+There are two other issues I found:
+- The maximize button hover overlay doesn't cover the whole button. Windows 11 File Explorer has that issue as well. 
 - Title bar text and buttons may not be updated if the window was already visible.
 
