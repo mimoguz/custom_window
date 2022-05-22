@@ -1,13 +1,7 @@
 package io.github.mimoguz.custom_window;
 
-import com.sun.jna.Library;
-import com.sun.jna.Native;
-import com.sun.jna.PointerType;
-import com.sun.jna.platform.win32.User32;
-import com.sun.jna.platform.win32.W32Errors;
-import com.sun.jna.platform.win32.WinDef;
-import com.sun.jna.platform.win32.WinNT;
-import com.sun.jna.Platform;
+import com.sun.jna.*;
+import com.sun.jna.platform.win32.*;
 
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -22,9 +16,10 @@ public class StageOps {
      * A wrapper for HWND type.
      */
     public static class WindowHandle {
-        private WinDef.HWND value;
+        private final WinDef.HWND value;
 
-        private WindowHandle() {
+        private WindowHandle(WinDef.HWND hwnd) {
+            value = hwnd;
         }
     }
 
@@ -99,9 +94,7 @@ public class StageOps {
         final var hwnd = User32.INSTANCE.FindWindow(null, searchString);
         stage.setTitle(title);
         if (hwnd != null) {
-            final var wrapper = new WindowHandle();
-            wrapper.value = hwnd;
-            return wrapper;
+            return new WindowHandle(hwnd);
         }
         return null;
     }
