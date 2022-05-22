@@ -90,7 +90,7 @@ public void start(final Stage stage) {
 If you look closely at the screenshot, you will see that the title text background is still opaque. 
 From what I gathered so far, to fix this we need to add WS_EX_NOREDIRECTIONBITMAP to extended window styles 
 (and maybe a couple other sytles, but that's the problematic one). That, apparently, cannot be done after the window 
-was created. So I think a JavaFX level fix (in GlassWindow.cpp) needed here.
+was created. So I think a JavaFX level fix (in GlassWindow.cpp) is needed here.
 
 There are two other issues I found:
 - The maximize button hover overlay doesn't cover the whole button. Windows 11 File Explorer has that issue as well. 
