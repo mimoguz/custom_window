@@ -10,7 +10,7 @@
     <url>https://github.com/mimoguz/custom_window</url>
 
     <properties>
-        <project.identifier>custom_window</project.identifier>
+        <project.identifier>custom-window</project.identifier>
         <project.github.repository>mimoguz/custom_window</project.github.repository>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>11</java.version>
@@ -32,13 +32,7 @@
         <!-- *************** FX *************** -->
         <dependency>
             <groupId>org.openjfx</groupId>
-            <artifactId>javafx-controls</artifactId>
-            <version>${javafx.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-fxml</artifactId>
+            <artifactId>javafx-graphics</artifactId>
             <version>${javafx.version}</version>
             <scope>provided</scope>
         </dependency>
