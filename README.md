@@ -96,3 +96,5 @@ There are two other issues I found:
 - The maximize button hover overlay doesn't cover the whole button. Windows 11 File Explorer has that issue as well. 
 - Title bar text and buttons may not be updated if the window was already visible.
 
+**Update:** With newer versions of Windows, Mica effect is even more broken now than before.
+
