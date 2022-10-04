@@ -96,7 +96,7 @@ was created. So I think a JavaFX level fix (in GlassWindow.cpp) is needed here.<
 Windows 11 22H2 update solved the opaque title text background issuse. But, to make the mica effect work reliably, 
 you will -most probably- need to set ```prism.forceUploadingPainter``` JVM option to ```true``` 
 ([the related issue](https://github.com/mimoguz/custom_window/issues/2)). 
-For Maven, you add this option to JavaFX plugin configuration in your ```pom.xml```, like this:
+For Maven, you can add this option to JavaFX plugin configuration in your ```pom.xml```, like this:
 
 ```xml
 <plugin>
