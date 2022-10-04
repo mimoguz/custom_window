@@ -77,6 +77,7 @@ public void start(final Stage stage) {
         if (!StageOps.dwmSetIntValue(
                 handle,
                 DwmAttribute.DWMWA_SYSTEMBACKDROP_TYPE,
+                // There is also DWMSBT_TABBEDWINDOW option, which gives a more translucent look.
                 DwmAttribute.DWMSBT_MAINWINDOW.value
         )) {
             // This is the "old" way:
@@ -87,14 +88,29 @@ public void start(final Stage stage) {
 
 ![Screenshot](./screenshot-mica.png)
 
-If you look closely at the screenshot, you will see that the title text background is still opaque. 
+<del>If you look closely at the screenshot, you will see that the title text background is still opaque. 
 From what I gathered so far, to fix this we need to add WS_EX_NOREDIRECTIONBITMAP to extended window styles 
 (and maybe a couple other sytles, but that's the problematic one). That, apparently, cannot be done after the window 
-was created. So I think a JavaFX level fix (in GlassWindow.cpp) is needed here.
+was created. So I think a JavaFX level fix (in GlassWindow.cpp) is needed here.</del>
 
-There are two other issues I found:
-- The maximize button hover overlay doesn't cover the whole button. Windows 11 File Explorer has that issue as well. 
-- Title bar text and buttons may not be updated if the window was already visible.
+Windows 11 22H2 update solved the opaque title text background issuse. But, to make the mica effect work reliably, 
+you will -most probably- need to set ```prism.forceUploadingPainter``` JVM option to ```true``` 
+([the related issue](https://github.com/mimoguz/custom_window/issues/2)). 
+For Maven, you add this option to JavaFX plugin configuration in your ```pom.xml```, like this:
 
-**Update:** With newer versions of Windows, the Mica effect is even more broken now than before.
+```xml
+<plugin>
+    <groupId>org.openjfx</groupId>
+    <artifactId>javafx-maven-plugin</artifactId>
+    <version>0.0.8</version>
+    <configuration>
+        <mainClass>Example</mainClass>
+        <options>
+          <option>-Dprism.forceUploadingPainter=true</option>
+        </options>
+    </configuration>
+</plugin>
+```
+
+
 
