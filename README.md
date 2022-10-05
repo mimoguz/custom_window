@@ -73,7 +73,7 @@ public void start(final Stage stage) {
         // Optionally enable the dark mode:
         StageOps.dwmSetBooleanValue(handle, DwmAttribute.DWMWA_USE_IMMERSIVE_DARK_MODE, true);
         // Enable the mica material
-        // DWMWA_SYSTEMBACKDROP_TYPE method is in Windows 11 preview builds:
+        // DWMWA_SYSTEMBACKDROP_TYPE method is the newer way:
         if (!StageOps.dwmSetIntValue(
                 handle,
                 DwmAttribute.DWMWA_SYSTEMBACKDROP_TYPE,
