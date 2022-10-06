@@ -112,5 +112,8 @@ For Maven, you can add this option to JavaFX plugin configuration in your ```pom
 </plugin>
 ```
 
+This unfortunetely may have adverse effects on performance, Eroica (the one who did/does all the hard work) found out. 
+If you're interested in using the mica effect in your JavaFX app, you might want to read their posts in the linked issue.
+
 
 
