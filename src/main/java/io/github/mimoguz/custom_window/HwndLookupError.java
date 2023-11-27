@@ -1,6 +1,6 @@
 package io.github.mimoguz.custom_window;
 
-public enum LookupError {
+public enum HwndLookupError {
     /** Current platform is not supported */
     NOT_SUPPORTED,
 

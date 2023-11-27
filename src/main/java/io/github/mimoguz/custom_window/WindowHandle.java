@@ -25,18 +25,18 @@ public class WindowHandle {
      * 
      * @param stage The top level window to search
      * @return Handle to the top level window
-     * @throws LookupException When the platform is not supported, titleProperty is bound, or the window
-     * was not found. 
-     * @see LookupException
-     * @see LookupError
+     * @throws HwndLookupException When the platform is not supported, titleProperty
+     *                             is bound, or the window
+     *                             was not found.
+     * @see HwndLookupError
      */
-    public static WindowHandle tryFind(final Stage stage) throws LookupException {
+    public static WindowHandle tryFind(final Stage stage) throws HwndLookupException {
         if (Platform.getOSType() != Platform.WINDOWS) {
-            throw new LookupException(LookupError.NOT_SUPPORTED);
+            throw new HwndLookupException(HwndLookupError.NOT_SUPPORTED);
         }
 
         if (stage.titleProperty().isBound()) {
-            throw new LookupException(LookupError.BOUND);
+            throw new HwndLookupException(HwndLookupError.BOUND);
         }
 
         final var searchString = "stage_" + java.util.UUID.randomUUID();
@@ -48,10 +48,9 @@ public class WindowHandle {
             return new WindowHandle(hwnd);
         }
 
-        throw new LookupException(LookupError.NOT_FOUND);
+        throw new HwndLookupException(HwndLookupError.NOT_FOUND);
     }
 
-    
     /**
      * Sets the border color.
      *
@@ -113,6 +112,7 @@ public class WindowHandle {
                         new WinDef.DWORDByReference(new WinDef.DWORD(value)),
                         WinDef.DWORD.SIZE));
     }
+
     private static int floatingTo8Bit(final double n) {
         return (int) Math.min(255.0, Math.max(n * 255.0, 0.0));
     }
