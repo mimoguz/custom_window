@@ -51,6 +51,37 @@ public class WindowHandle {
         throw new LookupException(LookupError.NOT_FOUND);
     }
 
+    
+    /**
+     * Sets the border color.
+     *
+     * @param color Border color
+     * @return True if it was successful, false if it wasn't.
+     */
+    public boolean setBorderColor(final Color color) {
+        return dwmSetIntValue(DwmAttribute.DWMWA_BORDER_COLOR, rgb(color));
+    }
+
+    /**
+     * Sets the title bar background color.
+     *
+     * @param color Caption color
+     * @return True if it was successful, false if it wasn't.
+     */
+    public boolean setCaptionColor(final Color color) {
+        return dwmSetIntValue(DwmAttribute.DWMWA_CAPTION_COLOR, rgb(color));
+    }
+
+    /**
+     * Sets the title text color.
+     *
+     * @param color Caption color
+     * @return True if it was successful, false if it wasn't.
+     */
+    public boolean setTextColor(final WindowHandle handle, final Color color) {
+        return dwmSetIntValue(DwmAttribute.DWMWA_TEXT_COLOR, rgb(color));
+    }
+
     /**
      * A wrapper for DwmSetWindowAttribute.
      *
@@ -82,37 +113,6 @@ public class WindowHandle {
                         new WinDef.DWORDByReference(new WinDef.DWORD(value)),
                         WinDef.DWORD.SIZE));
     }
-
-    /**
-     * Sets the border color.
-     *
-     * @param color Border color
-     * @return True if it was successful, false if it wasn't.
-     */
-    public boolean setBorderColor(final Color color) {
-        return dwmSetIntValue(DwmAttribute.DWMWA_BORDER_COLOR, RGB(color));
-    }
-
-    /**
-     * Sets the title bar background color.
-     *
-     * @param color Caption color
-     * @return True if it was successful, false if it wasn't.
-     */
-    public boolean setCaptionColor(final Color color) {
-        return dwmSetIntValue(DwmAttribute.DWMWA_CAPTION_COLOR, RGB(color));
-    }
-
-    /**
-     * Sets the title text color.
-     *
-     * @param color Caption color
-     * @return True if it was successful, false if it wasn't.
-     */
-    public boolean setTextColor(final WindowHandle handle, final Color color) {
-        return dwmSetIntValue(DwmAttribute.DWMWA_TEXT_COLOR, RGB(color));
-    }
-
     private static int floatingTo8Bit(final double n) {
         return (int) Math.min(255.0, Math.max(n * 255.0, 0.0));
     }
@@ -121,7 +121,7 @@ public class WindowHandle {
         return WinNT.HRESULT.compare(result, W32Errors.S_OK) == 0;
     }
 
-    private static int RGB(final Color color) {
+    private static int rgb(final Color color) {
         return (floatingTo8Bit(color.getBlue()) << 16)
                 | (floatingTo8Bit(color.getGreen()) << 8)
                 | floatingTo8Bit(color.getRed());
