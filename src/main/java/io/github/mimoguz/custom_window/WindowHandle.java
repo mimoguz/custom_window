@@ -26,8 +26,7 @@ public class WindowHandle {
      * @param stage The top level window to search
      * @return Handle to the top level window
      * @throws HwndLookupException When the platform is not supported, titleProperty
-     *                             is bound, or the window
-     *                             was not found.
+     *                             is bound, or the window was not found.
      * @see HwndLookupError
      */
     public static WindowHandle tryFind(final Stage stage) throws HwndLookupException {
