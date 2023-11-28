@@ -11,8 +11,9 @@ import javafx.stage.Stage;
 
 /**
  * A wrapper and relevant methods for a Win32 HWND.
- * Use the {@link #tryFind() tryFind} static method to acquire.
+ * Use the {@link #tryFind(Stage) tryFind} static method to acquire.
  */
+@SuppressWarnings({"UnusedReturnValue", "unused"})
 public class WindowHandle {
     private final WinDef.HWND hwnd;
 
@@ -27,15 +28,15 @@ public class WindowHandle {
      * @return Handle to the top level window
      * @throws HwndLookupException When the platform is not supported, titleProperty
      *                             is bound, or the window was not found.
-     * @see HwndLookupError
+     * @see HwndLookupException.Error
      */
     public static WindowHandle tryFind(final Stage stage) throws HwndLookupException {
         if (Platform.getOSType() != Platform.WINDOWS) {
-            throw new HwndLookupException(HwndLookupError.NOT_SUPPORTED);
+            throw new HwndLookupException(HwndLookupException.Error.NOT_SUPPORTED);
         }
 
         if (stage.titleProperty().isBound()) {
-            throw new HwndLookupException(HwndLookupError.BOUND);
+            throw new HwndLookupException(HwndLookupException.Error.BOUND);
         }
 
         final var searchString = "stage_" + java.util.UUID.randomUUID();
@@ -47,7 +48,7 @@ public class WindowHandle {
             return new WindowHandle(hwnd);
         }
 
-        throw new HwndLookupException(HwndLookupError.NOT_FOUND);
+        throw new HwndLookupException(HwndLookupException.Error.NOT_FOUND);
     }
 
     /**
@@ -61,6 +62,17 @@ public class WindowHandle {
     }
 
     /**
+     * Sets the border color.
+     *
+     * @param color Border color
+     * @return This
+     */
+    public WindowHandle borderColor(final Color color) {
+        setBorderColor(color);
+        return this;
+    }
+
+    /**
      * Sets the title bar background color.
      *
      * @param color Caption color
@@ -71,13 +83,35 @@ public class WindowHandle {
     }
 
     /**
+     * Sets the title bar background color.
+     *
+     * @param color Caption color
+     * @return This.
+     */
+    public WindowHandle captionColor(final Color color) {
+        setCaptionColor(color);
+        return this;
+    }
+
+    /**
      * Sets the title text color.
      *
      * @param color Caption color
      * @return True if it was successful, false if it wasn't.
      */
-    public boolean setTextColor(final WindowHandle handle, final Color color) {
+    public boolean setTextColor(final Color color) {
         return dwmSetIntValue(DwmAttribute.DWMWA_TEXT_COLOR, rgb(color));
+    }
+
+    /**
+     * Sets the title text color.
+     *
+     * @param color Caption color
+     * @return This.
+     */
+    public WindowHandle textColor(final Color color) {
+        setTextColor(color);
+        return this;
     }
 
     /**
