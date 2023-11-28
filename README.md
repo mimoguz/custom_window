@@ -38,7 +38,7 @@ public class Example extends Application {
             try {
                 WindowHandle.tryFind(stage)
                         .captionColor(Color.rgb(2, 48, 71))
-                        .textColor(olor.rgb(142, 202, 230))
+                        .textColor(Color.rgb(142, 202, 230))
                         .borderColor(Color.rgb(251, 133, 0));
             } catch (HwndLookupException e) {
                 // Ignore
