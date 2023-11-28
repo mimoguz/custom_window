@@ -1,6 +1,7 @@
 # Customize JavaFX stages on Windows 11
 
-A small collection of utility methods to customize a JavaFX stage. Targets Windows 11+, won't show any effect on unsupported OSes.
+A small collection of utility methods to customize a JavaFX stage. Targets Windows 11+. ```WindowHandle.tryFind``` 
+method will throw an HwndLookupException with Error.NOT_SUPPORTED error.
 
 ```java
 import io.github.mimoguz.custom_window.HwndLookupException;
