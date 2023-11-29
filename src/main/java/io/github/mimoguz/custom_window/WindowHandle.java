@@ -67,7 +67,7 @@ public class WindowHandle {
      * @param color Border color
      * @return This
      */
-    public WindowHandle borderColor(final Color color) {
+    public WindowHandle withBorderColor(final Color color) {
         setBorderColor(color);
         return this;
     }
@@ -88,7 +88,7 @@ public class WindowHandle {
      * @param color Caption color
      * @return This.
      */
-    public WindowHandle captionColor(final Color color) {
+    public WindowHandle withCaptionColor(final Color color) {
         setCaptionColor(color);
         return this;
     }
@@ -109,7 +109,7 @@ public class WindowHandle {
      * @param color Caption color
      * @return This.
      */
-    public WindowHandle textColor(final Color color) {
+    public WindowHandle withTextColor(final Color color) {
         setTextColor(color);
         return this;
     }
