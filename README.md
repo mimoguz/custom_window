@@ -38,9 +38,9 @@ public class Example extends Application {
         Platform.runLater(() -> {
             try {
                 WindowHandle.tryFind(stage)
-                        .captionColor(Color.rgb(2, 48, 71))
-                        .textColor(Color.rgb(142, 202, 230))
-                        .borderColor(Color.rgb(251, 133, 0));
+                        .withCaptionColor(Color.rgb(2, 48, 71))
+                        .withTextColor(Color.rgb(142, 202, 230))
+                        .withBorderColor(Color.rgb(251, 133, 0));
             } catch (HwndLookupException e) {
                 // Ignore
             }
@@ -52,6 +52,11 @@ public class Example extends Application {
 ```
 
 ![Screenshot](./screenshot.png)
+
+## Newer Alternatives
+
+* [fx-jni](https://github.com/xdsswar/shared-fx-jni-src)
+* [FXThemes](https://github.com/dukke/FXThemes)
 
 ## The Mica Material
 
@@ -142,7 +147,7 @@ For Maven, you can add this option to JavaFX plugin configuration in your ```pom
 </plugin>
 ```
 
-This unfortunetely may have adverse effects on performance, Eroica (the one who did/does all the hard work) found out. 
+This unfortunately may have adverse effects on performance, Eroica (the one who did/does all the hard work) found out. 
 If you're interested in using the mica effect in your JavaFX app, you might want to read their posts in the linked issue.
 
 
