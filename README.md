@@ -42,7 +42,18 @@ public class Example extends Application {
                         .withTextColor(Color.rgb(142, 202, 230))
                         .withBorderColor(Color.rgb(251, 133, 0));
             } catch (HwndLookupException e) {
-                // Ignore
+                switch (e.getError()) {
+                    case NOT_SUPPORTED:
+                        // Current platform is not supported.
+                        break;
+                    case NOT_FOUND:
+                        // Couldn't find the window.
+                        break;
+                    case BOUND:
+                        // The library uses a naive, title text based search.
+                        // If 'titleProperty' of the stage is bound, this method will fail. 
+                        break;
+                }
             }
         });
 
