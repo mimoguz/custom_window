@@ -1,19 +1,15 @@
 package io.github.mimoguz.custom_window;
 
-/** Some DWM enum variants and constants. */
+/**
+ * Some DWM enum variants and constants.
+ */
 @SuppressWarnings("unused")
 public enum DwmAttribute {
-    /** A possible value for DWMWA_SYSTEMBACKDROP_TYPE: default. */
-    DWMSBT_DISABLE(1),
-
-    /** A possible value for DWMWA_SYSTEMBACKDROP_TYPE: mica. */
-    DWMSBT_MAINWINDOW(2),
-
-    /** A possible value for DWMWA_SYSTEMBACKDROP_TYPE: tabbed. */
-    DWMSBT_TABBEDWINDOW(4),
-
-    /** A possible value for DWMWA_SYSTEMBACKDROP_TYPE: acrylic. */
-    DWMSBT_TRANSIENTWINDOW(3),
+    // If you only care about color customization, you will only need
+    //  * DWMWA_BORDER_COLOR,
+    //  * DWMWA_CAPTION_COLOR, and
+    //  * DWMWA_TEXT_COLOR.
+    // The rest can be removed.
 
     /**
      * Window border color. Accepts a COLORREF or a DWORD reference for pvAttribute,
@@ -28,6 +24,32 @@ public enum DwmAttribute {
     DWMWA_CAPTION_COLOR(35),
 
     /**
+     * Title text color. Accepts a COLORREF or a DWORD reference for pvAttribute,
+     * 0x00_bb_gg_rr.
+     */
+    DWMWA_TEXT_COLOR(36),
+
+    /**
+     * A possible value for DWMWA_SYSTEMBACKDROP_TYPE: default.
+     */
+    DWMSBT_DISABLE(1),
+
+    /**
+     * A possible value for DWMWA_SYSTEMBACKDROP_TYPE: mica.
+     */
+    DWMSBT_MAINWINDOW(2),
+
+    /**
+     * A possible value for DWMWA_SYSTEMBACKDROP_TYPE: tabbed.
+     */
+    DWMSBT_TABBEDWINDOW(4),
+
+    /**
+     * A possible value for DWMWA_SYSTEMBACKDROP_TYPE: acrylic.
+     */
+    DWMSBT_TRANSIENTWINDOW(3),
+
+    /**
      * The old way of enabling the mica effect. Takes a boolean reference for
      * pvAttribute.
      */
@@ -39,15 +61,13 @@ public enum DwmAttribute {
     DWMWA_SYSTEMBACKDROP_TYPE(38),
 
     /**
-     * Title text color. Accepts a COLORREF or a DWORD reference for pvAttribute,
-     * 0x00_bb_gg_rr.
+     * Set dark (or light) mode. Accepts a BOOLRef for pvAttribute.
      */
-    DWMWA_TEXT_COLOR(36),
-
-    /** Set dark (or light) mode. Accepts a BOOLRef for pvAttribute. */
     DWMWA_USE_IMMERSIVE_DARK_MODE(20);
 
-    /** Corresponding DMW constant value */
+    /**
+     * Corresponding DMW constant value
+     */
     public final int value;
 
     DwmAttribute(int value) {

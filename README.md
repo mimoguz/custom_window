@@ -1,9 +1,11 @@
 # Customize JavaFX stages on Windows 11
 
-A small collection of utility methods to customize a JavaFX stage. Targets Windows 11+, won't show any effect on unsupported OSes.
+A small collection of utility methods to customize a JavaFX stage. Targets Windows 11+. ```WindowHandle.tryFind``` 
+method will throw an HwndLookupException with Error.NOT_SUPPORTED error.
 
 ```java
-import io.github.mimoguz.custom_window.StageOps;
+import io.github.mimoguz.custom_window.HwndLookupException;
+import io.github.mimoguz.custom_window.WindowHandle;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -34,10 +36,14 @@ public class Example extends Application {
         stage.setTitle("Customized Window Example");
 
         Platform.runLater(() -> {
-            final var handle = StageOps.findWindowHandle(stage);
-            StageOps.setCaptionColor(handle, Color.rgb(2, 48, 71));
-            StageOps.setTextColor(handle, Color.rgb(142, 202, 230));
-            StageOps.setBorderColor(handle, Color.rgb(251, 133, 0));
+            try {
+                WindowHandle.tryFind(stage)
+                        .withCaptionColor(Color.rgb(2, 48, 71))
+                        .withTextColor(Color.rgb(142, 202, 230))
+                        .withBorderColor(Color.rgb(251, 133, 0));
+            } catch (HwndLookupException e) {
+                // Ignore
+            }
         });
 
         stage.show();
@@ -47,43 +53,72 @@ public class Example extends Application {
 
 ![Screenshot](./screenshot.png)
 
+## Newer Alternatives
+
+* [fx-jni](https://github.com/xdsswar/shared-fx-jni-src)
+* [FXThemes](https://github.com/dukke/FXThemes)
+
 ## The Mica Material
 
 You can apply the mica material to your stage like this:
 
 ```java
-@Override
-public void start(final Stage stage) {
-    final var button = new Button("A Button");
+import io.github.mimoguz.custom_window.HwndLookupException;
+import io.github.mimoguz.custom_window.WindowHandle;
 
-    final var root = new VBox();
-    root.setAlignment(Pos.CENTER);
-    root.getChildren().add(button);
-    root.setStyle("-fx-background-color: transparent");
+import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
-    final var scene = new Scene(root, 400, 300);
-    scene.setFill(Color.TRANSPARENT);
-    stage.setScene(scene);
+public class Example extends Application {
+    public static void main(final String[] args) {
+        launch();
+    }
 
-    stage.initStyle(StageStyle.UNIFIED);
-    stage.setTitle("Customized Window Example");
+    @Override
+    public void start(final Stage stage) {
+        final var button = new Button("A Button");
 
-    Platform.runLater(() -> {
-        final var handle = StageOps.findWindowHandle(stage);
-        // Optionally enable the dark mode:
-        StageOps.dwmSetBooleanValue(handle, DwmAttribute.DWMWA_USE_IMMERSIVE_DARK_MODE, true);
-        // Enable the mica material
-        // DWMWA_SYSTEMBACKDROP_TYPE method is the newer way:
-        if (!StageOps.dwmSetIntValue(
-                handle,
-                DwmAttribute.DWMWA_SYSTEMBACKDROP_TYPE,
-                // There is also DWMSBT_TABBEDWINDOW option, which gives a more translucent look.
-                DwmAttribute.DWMSBT_MAINWINDOW.value
-        )) {
-            // This is the "old" way:
-            StageOps.dwmSetBooleanValue(handle, DwmAttribute.DWMWA_MICA_EFFECT, true);
-        }
-    });
+        final var root = new VBox();
+        root.setAlignment(Pos.CENTER);
+        root.getChildren().add(button);
+        root.setStyle("-fx-background-color: transparent");
+
+        final var scene = new Scene(root, 400, 300);
+        scene.setFill(Color.TRANSPARENT);
+        stage.setScene(scene);
+
+        stage.initStyle(StageStyle.UNIFIED);
+        stage.setTitle("Customized Window Example");
+
+        Platform.runLater(() -> {
+            try {
+                final var handle = WindowHandle.tryFind(stage);
+                // Optionally enable the dark mode:
+                handle.dwmSetBooleanValue(DwmAttribute.DWMWA_USE_IMMERSIVE_DARK_MODE, true);
+                // Enable the mica material
+                // DWMWA_SYSTEMBACKDROP_TYPE method is the newer way:
+                if (!handle.dwmSetIntValue(
+                        DwmAttribute.DWMWA_SYSTEMBACKDROP_TYPE,
+                        // There is also DWMSBT_TABBEDWINDOW option, which gives a more translucent look.
+                        DwmAttribute.DWMSBT_MAINWINDOW.value
+                )) {
+                    // This is the "old" way:
+                    handle.dwmSetBooleanValue(DwmAttribute.DWMWA_MICA_EFFECT, true);
+                }
+            } catch (HwndLookupException e) {
+                // Ignore
+            }
+        });
+
+        stage.show();
+    }
+}
 ```
 
 ![Screenshot](./screenshot-mica.png)
@@ -112,7 +147,7 @@ For Maven, you can add this option to JavaFX plugin configuration in your ```pom
 </plugin>
 ```
 
-This unfortunetely may have adverse effects on performance, Eroica (the one who did/does all the hard work) found out. 
+This unfortunately may have adverse effects on performance, Eroica (the one who did/does all the hard work) found out. 
 If you're interested in using the mica effect in your JavaFX app, you might want to read their posts in the linked issue.
 
 
