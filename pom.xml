@@ -10,7 +10,7 @@
     <url>https://github.com/mimoguz/custom_window</url>
 
     <properties>
-        <project.identifier>custom-window</project.identifier>
+        <project.identifier>customwindow</project.identifier>
         <project.github.repository>mimoguz/custom_window</project.github.repository>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>11</java.version>

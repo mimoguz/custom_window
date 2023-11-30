@@ -4,8 +4,8 @@ A small collection of utility methods to customize a JavaFX stage. Targets Windo
 method will throw an HwndLookupException with Error.NOT_SUPPORTED error.
 
 ```java
-import io.github.mimoguz.custom_window.HwndLookupException;
-import io.github.mimoguz.custom_window.WindowHandle;
+import io.github.mimoguz.customwindow.HwndLookupException;
+import io.github.mimoguz.customwindow.WindowHandle;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -74,8 +74,8 @@ public class Example extends Application {
 You can apply the mica material to your stage like this:
 
 ```java
-import io.github.mimoguz.custom_window.HwndLookupException;
-import io.github.mimoguz.custom_window.WindowHandle;
+import io.github.mimoguz.customwindow.HwndLookupException;
+import io.github.mimoguz.customwindow.WindowHandle;
 
 import javafx.application.Application;
 import javafx.application.Platform;

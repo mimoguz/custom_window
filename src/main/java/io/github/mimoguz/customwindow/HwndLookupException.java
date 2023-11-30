@@ -1,4 +1,4 @@
-package io.github.mimoguz.custom_window;
+package io.github.mimoguz.customwindow;
 
 @SuppressWarnings("unused")
 public final class HwndLookupException extends Exception {

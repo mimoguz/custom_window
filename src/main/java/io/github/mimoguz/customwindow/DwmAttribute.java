@@ -1,4 +1,4 @@
-package io.github.mimoguz.custom_window;
+package io.github.mimoguz.customwindow;
 
 /**
  * Some DWM enum variants and constants.

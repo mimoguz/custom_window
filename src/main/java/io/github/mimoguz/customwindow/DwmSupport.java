@@ -1,4 +1,4 @@
-package io.github.mimoguz.custom_window;
+package io.github.mimoguz.customwindow;
 
 import com.sun.jna.Library;
 import com.sun.jna.Native;
