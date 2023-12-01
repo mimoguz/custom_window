@@ -4,8 +4,8 @@ A small collection of utility methods to customize a JavaFX stage. Targets Windo
 method will throw an HwndLookupException with Error.NOT_SUPPORTED error.
 
 ```java
-import io.github.mimoguz.custom_window.HwndLookupException;
-import io.github.mimoguz.custom_window.WindowHandle;
+import io.github.mimoguz.customwindow.HwndLookupException;
+import io.github.mimoguz.customwindow.WindowHandle;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -42,7 +42,18 @@ public class Example extends Application {
                         .withTextColor(Color.rgb(142, 202, 230))
                         .withBorderColor(Color.rgb(251, 133, 0));
             } catch (HwndLookupException e) {
-                // Ignore
+                switch (e.getError()) {
+                    case NOT_SUPPORTED:
+                        // Current platform is not supported.
+                        break;
+                    case NOT_FOUND:
+                        // Couldn't find the window.
+                        break;
+                    case BOUND:
+                        // The library uses a naive, title text based search.
+                        // If 'titleProperty' of the stage is bound, this method will fail. 
+                        break;
+                }
             }
         });
 
@@ -52,6 +63,21 @@ public class Example extends Application {
 ```
 
 ![Screenshot](./screenshot.png)
+
+## Usage
+
+* _Optionally_ edit pom.xml to set JavaFX version you want.
+* Run ```mvn install``` (this will also create javadocs, look under target/apidocs folder).
+* Add dependency:
+```xml
+<dependency>
+    <groupId>io.github.mimoguz</groupId>
+    <artifactId>customwindow</artifactId>
+    <version>0.2.0</version>
+</dependency>
+```
+
+Or add JNA dependency to your project and take bits and pieces you need.
 
 ## Newer Alternatives
 
@@ -63,8 +89,8 @@ public class Example extends Application {
 You can apply the mica material to your stage like this:
 
 ```java
-import io.github.mimoguz.custom_window.HwndLookupException;
-import io.github.mimoguz.custom_window.WindowHandle;
+import io.github.mimoguz.customwindow.HwndLookupException;
+import io.github.mimoguz.customwindow.WindowHandle;
 
 import javafx.application.Application;
 import javafx.application.Platform;
