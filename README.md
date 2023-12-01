@@ -64,6 +64,21 @@ public class Example extends Application {
 
 ![Screenshot](./screenshot.png)
 
+## Usage
+
+* _Optionally_ edit pom.xml to set JavaFX version you want.
+* Run ```mvn install``` (this will also create javadocs, look under target/apidocs folder).
+* Add dependency:
+```xml
+<dependency>
+    <groupId>io.github.mimoguz</groupId>
+    <artifactId>customwindow</artifactId>
+    <version>0.2.0</version>
+</dependency>
+```
+
+Or add JNA dependency to your project and take bits and pieces you need.
+
 ## Newer Alternatives
 
 * [fx-jni](https://github.com/xdsswar/shared-fx-jni-src)
